@@ -1,0 +1,89 @@
+<!-- the basics of AngularJS: DIRECTIVE, expressions, filters, modules, and controllers -->
+<!-- everything else you need to know about AngularJS: Events, DOM, Forms, Input, Validation, Http, and more -->
+
+<!-- AngularJS directives are HTML attributes with an 'ng' prefix -->
+
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body x-ng-app="myApp">
+
+    <div>
+        <!-- ^ng-app is a DIRECTIVE. It tells the div element that it's the owner of a JS application -->
+        <!-- x-ng-*** helps with HTML validity. You can also use data-ng-something -->
+        <p>Name:
+            <input type="text" x-ng-model="potato">
+        </p>
+        <!-- ^ ng-model is a DIRECTIVE, This assigns the contents of a input, to a variable called "name". -->
+        <!-- To use this variable, simply put it between tags like this. -->
+        <p>Hello {{potato}}</p>
+        <!-- This is an expression-->
+        <!-- OR -->
+        <p x-ng-bind="potato"></p>
+        <!-- ^ ng-bind is a DIRECTIVE that binds the content of the p tag I'm using, to the application variable ("name") -->
+
+        <!-- You can also do math in expressions...-->
+        <p>1 + 1 = {{1+1}}</p>
+        <!-- 
+
+
+
+         -->
+    </div>
+    <div x-ng-init="firstName='Chris'">
+        <!-- This is me initializing the firstName variable, giving it a default value-->
+        <p>My name is
+            <span x-ng-bind="firstName"></span>
+            , I initialized my name .
+        </p>
+    </div>
+    <div x-ng-controller="myCtrler" x-ng-init="myColor='red'">
+        First Name:
+        <input type="text" style="background-color:{{myColor}}" x-ng-model="fName" />
+        <br>
+        <!-- You can use expressions wherever you like, as seen here ^ -->
+        
+        Last Name:
+        <input type="text" x-ng-model="lName" />
+        <br> Full Name: {{fName + " " + lName}}
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        // AngularJS modules define applications.
+        // Check in the body where I define the app, setting it to = the 'myApp' in this module.
+        app.controller('myCtrler', function ($scope) {
+            // AngularJS controllers control the applications. Allowing you to change things within the view.
+            $scope.fName = "Chriz";
+            $scope.lName = 'Fozt';
+            // here I'm targeting the view to give default values to $scope.fName, as an example.
+        })
+
+    </script>
+
+    <div>
+        <p x-ng-init="quantity=2; cost=33;">
+            <!-- Javascript numbers are the same as AngularJS numbers. -->
+            Expression quantity * cost {{quantity * cost}}.
+            <br>
+            <!-- Expression using math -->
+            <p>
+                And binding quantity * cost
+                <span x-ng-bind="quantity * cost"></span>.
+                <!-- binding directive using math -->
+            </p>
+        </p>
+    </div>
+    <div x-ng-init="person={firstName: 'Chris', lastName: 'Foster'}">
+        <p>Javascipt objects are like Angular Objects.</p>
+        <p>My name is {{person.firstName + " " + person.lastName}}</p>
+    </div>
+    <br>
+    <div x-ng-init="thisArr=[1, 3, 56, 'yay']">
+        Javascript arrays are like AngularJS arrays
+        <p x-ng-bind="thisArr[3]"></p>
+    </div>
+</body>
+
+</html>

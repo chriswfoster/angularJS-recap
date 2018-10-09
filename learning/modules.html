@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+
+<body x-ng-app="myApp" x-ng-controller="thisNewController" nothing-ever>
+    <!-- A module is created in AngularJS by using a function called angular.module -->
+
+
+
+
+    <script>
+        var app = angular.module("myApp", []);
+        // declaring my module. the "myApp" parameter refers to an html element which the application will run.
+
+
+        app.controller("thisNewController", function ($scope) {
+            // this adds a controller to my application, refer to it above using the ng-controller directive.
+        })
+        app.directive("nothingEver", function () {
+            // This is extremely annoying, but this camecased parameter fed in here, refers to the kebab-cased name after the controller directive
+            return {
+                template: "test"
+            }
+        })
+    </script>
+</body>
+
+</html>
